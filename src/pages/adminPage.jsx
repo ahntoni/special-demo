@@ -63,7 +63,7 @@ export default function AdminPage() {
       };
 
       const updatedList = shipments.map((s) =>
-        s.billLandingNo === updated.billLandingNo ? updatedShipment : s
+        s.billLandingNo === updated.billLandingNo ? updatedShipment : s,
       );
 
       setShipments(updatedList);
@@ -76,7 +76,7 @@ export default function AdminPage() {
   const handleDelete = async (billLandingNo) => {
     try {
       const filtered = shipments.filter(
-        (s) => s.billLandingNo !== billLandingNo
+        (s) => s.billLandingNo !== billLandingNo,
       );
       setShipments(filtered);
     } catch (err) {
@@ -107,7 +107,7 @@ export default function AdminPage() {
     }
 
     const alreadyExists = shipments.some(
-      (s) => s.billLandingNo === formData.billLandingNo
+      (s) => s.billLandingNo === formData.billLandingNo,
     );
     if (alreadyExists) {
       setErrorMessage("A shipment with this Bill Landing No already exists.");
@@ -136,14 +136,14 @@ export default function AdminPage() {
 
   return (
     <div className="w-full text-[var(--Accent)] bg-gray-400 flex flex-col">
-      <div className="flex justify-between ml-24 mr-12 items-center py-8">
+      <div className="flex flex-col lg:flex-row justify-between px-4 xl:px-24 gap-6 items-start lg:items-center py-8">
         <h2 className="text-5xl font-extrabold text-[var(--NavBackgroundOne)]">
           Hello, Welcome back.
         </h2>
-        <div className="flex gap-12">
+        <div className="flex flex-col-reverse md:flex-row gap-x-12 gap-y-4">
           <button
             onClick={openNewEntry}
-            className="text-lg font-extrabold px-4 py-2 rounded-xl cursor-pointer shadow-md bg-[var(--Accent)] text-[var(--Secondary)] hover:opacity-80"
+            className="text-sm md:text-lg font-extrabold px-4 py-2 rounded-xl cursor-pointer shadow-md bg-[var(--Accent)] text-[var(--Secondary)] hover:opacity-80"
           >
             + Create Shipment Entry
           </button>
@@ -167,12 +167,12 @@ export default function AdminPage() {
 
       {isNewEntryOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg flex flex-col w-max shadow-lg">
+          <div className="bg-white p-4 md:p-6 rounded-lg flex flex-col w-[95%] md:w-auto max-h-[90vh] overflow-y-auto shadow-lg">
             <div className="text-xl font-extrabold mb-4 p-3 bg-[var(--Secondary)] rounded-md w-max">
               New Shipment Entry
             </div>
 
-            <div className="space-y-4 grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {[
                 "billLandingNo",
                 "containerNo",

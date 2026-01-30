@@ -19,7 +19,7 @@ export default function ShipmentList() {
       : shipment.containerNo
     )
       .toLowerCase()
-      .includes(searchTerm.toLowerCase())
+      .includes(searchTerm.toLowerCase()),
   );
 
   const handleEditClick = (shipment) => {
@@ -37,7 +37,7 @@ export default function ShipmentList() {
       "customDocumentation",
       "portOfDischarge",
       "shippingReleasing",
-      "delivery"
+      "delivery",
     ];
 
     const newData = { ...editData };
@@ -69,7 +69,7 @@ export default function ShipmentList() {
 
     try {
       const updatedList = shipments.map((s) =>
-        s.billLandingNo === newData.billLandingNo ? newData : s
+        s.billLandingNo === newData.billLandingNo ? newData : s,
       );
       setShipments(updatedList);
       setMessage("✅ Shipment updated successfully.");
@@ -89,7 +89,7 @@ export default function ShipmentList() {
     setLoading(true);
     try {
       setShipments((prev) =>
-        prev.filter((s) => s.billLandingNo !== deleteData.billLandingNo)
+        prev.filter((s) => s.billLandingNo !== deleteData.billLandingNo),
       );
       setMessage("🗑️ Shipment deleted.");
       setDeleteData(null);
@@ -101,7 +101,7 @@ export default function ShipmentList() {
   };
 
   const InfoRow = ({ label, value, style }) => (
-    <div className="flex flex-col p-2">
+    <div className="flex flex-col p-2 w-[45%] md:w-auto">
       <span className="text-xs">{label}:</span>
       <span className="font-semibold text-md" style={style}>
         {value || "—"}
@@ -117,7 +117,7 @@ export default function ShipmentList() {
           : "opacity-0 pointer-events-none"
       } bg-black bg-opacity-40`}
     >
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
+      <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg w-[95%] md:max-w-3xl max-h-[90vh] overflow-y-auto">
         <h3 className="text-lg font-semibold mb-4">{title}</h3>
         {children}
       </div>
@@ -143,7 +143,7 @@ export default function ShipmentList() {
         </div>
       )}
 
-      <div className="w-1/2 p-4 fixed">
+      <div className="w-full md:w-1/2 p-4 fixed z-40 bg-gray-400">
         <input
           type="text"
           placeholder="Search by container number..."
@@ -153,15 +153,15 @@ export default function ShipmentList() {
         />
       </div>
 
-      <div className="gap-2 flex flex-col p-2 mt-16">
+      <div className="gap-4 flex flex-col md:flex-row md:flex-wrap p-2 mt-20">
         {filteredShipments.map((shipment, idx) => (
           <div
             key={`${shipment.billLandingNo}-${idx}`}
-            className="bg-[var(--Secondary)] text-[var(--Accent)] shadow-md rounded-lg p-4 flex-1 min-w-[20rem] border-2"
+            className="bg-[var(--Secondary)] text-[var(--Accent)] shadow-md rounded-lg p-4 w-full md:w-[48%] xl:w-[32%] border-2"
           >
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold p-1 bg-gray-300 rounded-md">
-                {shipment.billLandingNo} - {" "}
+              <h2 className="text-xl font-bold p-1 w-1/2 bg-gray-300 rounded-md">
+                {shipment.billLandingNo} -{" "}
                 <span className="text-blue-900 font-mono">
                   {Array.isArray(shipment.containerNo)
                     ? `{${shipment.containerNo.join(" - ")}}`
@@ -184,15 +184,18 @@ export default function ShipmentList() {
                 </button>
               </div>
             </div>
-            <div className="flex justify-around flex-wrap">
+            <div className="flex flex-wrap gap-3 justify-between">
               <InfoRow label="Products" value={shipment.products} />
               <InfoRow
                 label="Shipping Line"
                 value={(shipment.shippingLine || "").replace(/_/g, " ")}
               />
               <InfoRow label="Port of loading" value={shipment.portOfLoading} />
-              <InfoRow label="Port of discharge" value={shipment.portOfDischarge} />
-                            <InfoRow label="Vessel" value={shipment.vessel} />
+              <InfoRow
+                label="Port of discharge"
+                value={shipment.portOfDischarge}
+              />
+              <InfoRow label="Vessel" value={shipment.vessel} />
 
               <InfoRow
                 label="Status"
@@ -237,8 +240,8 @@ export default function ShipmentList() {
       >
         {editData && (
           <>
-            <div className="grid grid-cols-3 gap-5 min-w-auto">
-              {[ 
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 w-full">
+              {[
                 "containerNo",
                 "products",
                 "shippingLine",
@@ -247,7 +250,7 @@ export default function ShipmentList() {
                 "vessel",
                 "status",
                 "ETA",
-                "paar"
+                "paar",
               ].map((field) => (
                 <div className="flex flex-col mb-3" key={field}>
                   <label className="capitalize text-sm font-medium">
@@ -264,7 +267,7 @@ export default function ShipmentList() {
                         ? Array.isArray(editData.containerNo)
                           ? editData.containerNo.join(", ")
                           : editData.containerNo || ""
-                        : editData?.[field] ?? ""
+                        : (editData?.[field] ?? "")
                     }
                     ref={(el) => {
                       if (el) inputRefs.current[field] = el;

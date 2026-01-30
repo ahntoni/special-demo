@@ -4,8 +4,8 @@ import ServiceImage from "../assets/services.jpg";
 export default function HomePage() {
   return (
     <>
-      <div className="w-full flex max-h-full">
-        <img src={ServiceImage} alt="" className="max-w-2/3 min-h-full" />
+      <div className="w-full flex min-h-screen">
+        <img src={ServiceImage} alt="" className="xl:flex hidden max-w-2/3 min-h-full" />
         <div className="flex items-center w-full flex-col text-[var(--Accent)] bg-gray-400 justify-center">
           <h1 className="text-2xl my-12 font-semibold">Welcome, please select a view</h1>
           <div className="flex flex-col gap-6 items-center">

@@ -17,7 +17,7 @@ function ProtectedRoute({ children }) {
 export default function App() {
   return (
     <Router>
-      <div className="max-w-screen h-screen border flex app">
+      <div className="max-w-screen max-h-screen border flex app">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />

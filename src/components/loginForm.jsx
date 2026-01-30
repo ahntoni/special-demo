@@ -29,7 +29,7 @@ export default function LoginForm() {
 
   return (
     <div className="h-full flex">
-      <img src={ShipImage} alt="" className="object-cover w-2/3" />
+      <img src={ShipImage} alt="" className="object-cover w-2/3 xl:flex hidden" />
       <div className="w-full bg-[var(--Primary)] p-8 rounded-2xl shadow-md flex justify-center flex-col">
         <h2 className="text-2xl font-bold text-center mb-6">Admin Login</h2>
 
